@@ -1,10 +1,10 @@
+#![allow(unused_must_use)]
 use crate::utils::*;
-use cli_table::{format::Justify, print_stdout, Table, WithTitle};
+use cli_table::{print_stdout, Table, WithTitle};
 use std::env;
 use std::fmt;
 use std::fs;
-use std::os::unix::fs::{MetadataExt, PermissionsExt};
-use std::path::*;
+use std::os::unix::fs::MetadataExt;
 use users::{get_group_by_gid, get_user_by_uid};
 
 #[derive(Table, Debug)]
@@ -46,6 +46,7 @@ pub struct File {
     accesstime: String,
     modificationtime: String,
     permessions: [Permessions; 3],
+    size: String,
 }
 
 impl File {
@@ -63,6 +64,7 @@ impl File {
                 Permessions::new(input, 2),
                 Permessions::new(input, 3),
             ],
+            size: convert_byte_human(get_size(input)),
         }
     }
 }
@@ -109,8 +111,13 @@ pub fn get_inode_number(name: &str) -> u64 {
     metadata.ino()
 }
 
+pub fn get_size(name: &str) -> u64 {
+    let metadata = fs::metadata(name).unwrap();
+    metadata.len()
+}
+
 pub fn get_permessions(name: &str, member: i32) -> [bool; 3] {
-    let mut permessions: [bool; 3];
+    let permessions: [bool; 3];
     let meta = fs::metadata(name).unwrap();
     let mode = meta.mode();
 
@@ -147,7 +154,7 @@ impl fmt::Display for File {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(
             f,
-            "\nFile Name : {}\nFull Path : {}\nOwned By User : {}\nOwned By Group{}\nInode Number : {}\nLast Accessed At : {}\nLast Modified At : {}\n",
+            "\nFile Name : {}\nFull Path : {}\nOwned By User : {}\nOwned By Group : {}\nInode Number : {}\nLast Accessed At : {}\nLast Modified At : {}\nFile Size : { }\n",
             self.name,
             self.path,
             self.owner,
@@ -155,6 +162,7 @@ impl fmt::Display for File {
             self.inode,
             self.accesstime,
             self.modificationtime,
+            self.size,
         );
         assert!(print_stdout(self.permessions.with_title()).is_ok());
 
