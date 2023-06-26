@@ -69,6 +69,7 @@ impl File {
     }
 }
 
+// This function returns the absolute path of the file passed as argument
 pub fn get_full_path(name: &str) -> String {
     let current_dir = env::current_dir().expect("Failed to get current directory");
     current_dir.join(name).display().to_string()
@@ -93,6 +94,7 @@ pub fn user_byid(id: u32) -> String {
         .to_string()
 }
 
+// This function takes the group ID as a paramter and returns the group name
 pub fn group_byid(id: u32) -> String {
     get_group_by_gid(id)
         .unwrap()
@@ -102,6 +104,8 @@ pub fn group_byid(id: u32) -> String {
         .to_string()
 }
 
+// This function takes the file name as an argument and returns the last access time and last
+// modification time
 pub fn get_time_info(name: &str) -> (i64, i64) {
     let metadata = fs::metadata(name).unwrap();
     (metadata.atime(), metadata.mtime())
@@ -111,6 +115,7 @@ pub fn get_inode_number(name: &str) -> u64 {
     metadata.ino()
 }
 
+// This function takes the file name as an argument and returns the size in bytes
 pub fn get_size(name: &str) -> u64 {
     let metadata = fs::metadata(name).unwrap();
     metadata.len()
