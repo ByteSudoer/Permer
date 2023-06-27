@@ -23,6 +23,6 @@ Running this command will create a binary under the `target/release` directory t
 
 the following section consists of the features and options that I am willing to implement in the future.
 
-- [ ] Provide a Dockerfile that makes building and running this tool as a container possible.
+- [x] Provide a Dockerfile that makes building and running this tool as a container possible.
 - [ ] Distribute this tool as an AUR package available to download.
 - [ ] Added color-support and better formatting the output.
