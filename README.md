@@ -8,6 +8,8 @@ Permer is a CLI tool written in Rust that provides information about files prese
 
 ```bash
 cargo build --release
+# And then you can run it with
+cargo run --release -- Cargo.toml
 ```
 
 Running this command will create a binary under the `target/release` directory that you can execute:
@@ -16,8 +18,19 @@ Running this command will create a binary under the `target/release` directory t
 ./target/release/Permer <File>
 ```
 
-- Or you can check the release section and download the pre-compiled binary from there§.
+- Or you can check the release section and download the pre-compiled binary from there.
   > Check for the latest release to assure that all the functionalities are available.
+
+## Running through Docker
+
+First you need to build the image :
+
+```bash
+docker build -t permer .
+# Or use the path to the dockerFile if you are not in the project directory.
+```
+
+You can check if the image was created successfully by running `docker images`
 
 ## TODO
 
