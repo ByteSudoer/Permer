@@ -2,16 +2,17 @@
 name = "permer"
 version = "0.1.0"
 edition = "2021"
-author = "ByteSudoer"
-readme = "./README.md"
+authors = ["ByteSudoer"]
+readme = "README.md"
+license-file = "LICENSE"
 repository = "https://github.com/ByteSudoer/Permer"
 description = "Permer is a CLI tool written in Rust that provides information about files present in your file system."
 categories = ["command-line-utilities", "filesystem"]
 
 
-[[bin]]
-name = "permer"
-path = "src/main.rs"
+# [[bin]]
+# name = "permer"
+# path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -20,3 +21,25 @@ clap = "4.3.5"
 users = "0.11.0"
 chrono = "0.4.26"
 cli-table = "0.4.7"
+
+
+[package.metadata.deb]
+maintainer = "ByteSudoer"
+copyright = "2023, ByteSudoer"
+license-file = ["LICENSE"]
+extended-description = "Permer is a CLI tool written in Rust that provides information about files present in your file system."
+depends = "$auto"
+section = "utility"
+priority = "optional"
+assets = [
+  [
+    "target/release/cargo-deb",
+    "usr/bin/",
+    "755",
+  ],
+  [
+    "README.md",
+    "usr/share/doc/cargo-deb/README",
+    "644",
+  ],
+]
