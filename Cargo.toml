@@ -3,6 +3,11 @@ name = "permer"
 version = "0.1.0"
 edition = "2021"
 author = "ByteSudoer"
+readme = "./README.md"
+repository = "https://github.com/ByteSudoer/Permer"
+description = "Permer is a CLI tool written in Rust that provides information about files present in your file system."
+categories = ["command-line-utilities", "filesystem"]
+
 
 [[bin]]
 name = "permer"
