@@ -10,9 +10,9 @@ description = "Permer is a CLI tool written in Rust that provides information ab
 categories = ["command-line-utilities", "filesystem"]
 
 
-# [[bin]]
-# name = "permer"
-# path = "src/main.rs"
+[[bin]]
+name = "permer"
+path = "src/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -33,13 +33,13 @@ section = "utility"
 priority = "optional"
 assets = [
   [
-    "target/release/cargo-deb",
+    "target/release/permer",
     "usr/bin/",
     "755",
   ],
   [
     "README.md",
-    "usr/share/doc/cargo-deb/README",
+    "usr/share/doc/permer/README",
     "644",
   ],
 ]
