@@ -1,4 +1,8 @@
-# Permer
+# Permer 
+
+
+![example workflow](https://github.com/ByteSudoer/Permer/actions/workflows/rust.yml/badge.svg)
+![Latest Version](https://img.shields.io/crates/v/permer.svg)
 
 Permer is a CLI tool written in Rust that provides information about files present in your file system.
 
