@@ -39,4 +39,4 @@ the following section consists of the features and options that I am willing to 
 - [x] Provide a Dockerfile that makes building and running this tool as a container possible.
 - [x] Distribute this tool as .deb package available to download.
 - [ ] Distribute this tool as an AUR package available to download.
-- [ ] Added color-support and better formatting the output.
+- [x] Added color-support and better formatting the output.
