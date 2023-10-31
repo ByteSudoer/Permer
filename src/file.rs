@@ -1,6 +1,6 @@
-#![allow(unused_must_use)]
 use crate::utils::*;
 use cli_table::{print_stdout, Table, WithTitle};
+use colored::Colorize;
 use std::env;
 use std::fmt;
 use std::fs;
@@ -157,20 +157,30 @@ pub fn get_permessions(name: &str, member: i32) -> [bool; 3] {
 
 impl fmt::Display for File {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(
+        writeln!(f, "{} : {}", "File Name".blue(), self.name.red())?;
+        writeln!(f, "{} : {}", "Full Path".blue(), self.path.red())?;
+        writeln!(f, "{} : {}", "Owned By User".blue(), self.owner.red())?;
+        writeln!(f, "{} : {}", "Owned By Group".blue(), self.group.red())?;
+        writeln!(
             f,
-            "\nFile Name : {}\nFull Path : {}\nOwned By User : {}\nOwned By Group : {}\nInode Number : {}\nLast Accessed At : {}\nLast Modified At : {}\nFile Size : { }\n",
-            self.name,
-            self.path,
-            self.owner,
-            self.group,
-            self.inode,
-            self.accesstime,
-            self.modificationtime,
-            self.size,
-        );
+            "{} : {}",
+            "Inode Number".blue(),
+            self.inode.to_string().red()
+        )?;
+        writeln!(
+            f,
+            "{} : {}",
+            "Last Accessed At ".blue(),
+            self.accesstime.red()
+        )?;
+        writeln!(
+            f,
+            "{} : {}",
+            "Last Modifier At ".blue(),
+            self.modificationtime.red()
+        )?;
+        writeln!(f, "{} : {}", "File Size".blue(), self.size.red())?;
         assert!(print_stdout(self.permessions.with_title()).is_ok());
-
         Ok(())
     }
 }
